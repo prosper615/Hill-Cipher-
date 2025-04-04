@@ -66,6 +66,86 @@ console.log(ArrayHold)
 
 
 
+// let ThePartingWords = ["pay", "Pro", "Ret"];
+
+let ThePartingWords = ArrayHold;
+
+
+
+const theresult = []
+
+
+    // Now getting the values of the matrix
+    
+    // input at position 1,4,7 forms the first row
+
+    // input at position 2,5,8  forms the second  row
+    
+    // input at position 3,6,9  forms the third   row
+ 
+      
+
+    // TODO:  Need to rearrange the way the HTML presents the input element
+
+    const charValues = [
+        ( document.getElementById("char1") as HTMLInputElement).value,
+        ( document.getElementById("char2") as HTMLInputElement).value, 
+        ( document.getElementById("char3") as HTMLInputElement).value,
+        ( document.getElementById("char4") as HTMLInputElement).value,
+        ( document.getElementById("char5") as HTMLInputElement).value,
+        ( document.getElementById("char6") as HTMLInputElement).value,
+        ( document.getElementById("char7") as HTMLInputElement).value, 
+        ( document.getElementById("char8") as HTMLInputElement).value,
+        ( document.getElementById("char9") as HTMLInputElement).value,
+ 
+           
+     ];
+  
+
+
+
+while(ThePartingWords.length > 0) {
+
+
+
+   const  SplitPerOne = ThePartingWords.shift();
+
+
+    const mappedValues = SplitPerOne.split("").map(char => CharMapping1[char]).filter(value => value !== undefined  ) ;
+
+    
+
+
+     const columnOne = [charValues[0], charValues[3], charValues[6]];
+     const columnTwo = [charValues[1], charValues[4], charValues[7]];
+     const columnThree = [charValues[2], charValues[5], charValues[8]];
+
+
+
+
+     const firstColumnDo = dotProduct(mappedValues , columnOne);
+     const secondColumnDo = dotProduct(mappedValues , columnTwo) ;
+     const thirdColumnDo = dotProduct(mappedValues , columnThree) ;
+
+
+
+     theresult.push([firstColumnDo, secondColumnDo, thirdColumnDo]);
+
+  
+
+
+    }
+
+
+
+return console.log(theresult)
+
+
+
+
+
+
+
 
 } else{
 
@@ -106,12 +186,7 @@ console.log( ArrayHold2)
 }
 
 
-
-
-
-
 }
-
 
 
 
@@ -152,46 +227,133 @@ const CharMapping1 = {
 
 
 
-    function getreplace( replaced ){
-
-        return replaced.replace(/[a-z]/gi, replaced =>CharMapping1[replaced] ||  replaced )
-          
-          
-      
-      }
 
 
-const TestingArrayOp = document.getElementById("TestingArrayOp") as HTMLInputElement
+
+function dotProduct (arr1, arr2) {
+
+    return arr1.reduce((acc :number, val:number, index: number) => acc + val * arr2[index], 0) % 26;
 
 
+}
+
+
+console.log( dotProduct([15, 0, 24], [17, 21, 2]))
+
+
+
+
+
+/*
+
+const TestingArrayOp = document.getElementById("TestingArrayOp")   as HTMLButtonElement
 
 TestingArrayOp.addEventListener("click", () => {
 
-
-    const ThePartingWords = ["Ilo", "Pro", "Ret"];
-
-    // const SplitPerOne = ThePartingWords.shift().split("")
-
-    const SplitPerOne = ThePartingWords.shift()
+    let ThePartingWords = ["pay", "Pro", "Ret"];
 
 
+const theresult = []
 
-    console.log(SplitPerOne)
+
+    // Now getting the values of the matrix
+    
+    // input at position 1,4,7 forms the first row
+
+    // input at position 2,5,8  forms the second  row
+    
+    // input at position 3,6,9  forms the third   row
+ 
+      
+
+    // TODO:  Need to rearrange the way the HTML presents the input element
+
+    const charValues = [
+        ( document.getElementById("char1") as HTMLInputElement).value,
+        ( document.getElementById("char2") as HTMLInputElement).value, 
+        ( document.getElementById("char3") as HTMLInputElement).value,
+        ( document.getElementById("char4") as HTMLInputElement).value,
+        ( document.getElementById("char5") as HTMLInputElement).value,
+        ( document.getElementById("char6") as HTMLInputElement).value,
+        ( document.getElementById("char7") as HTMLInputElement).value, 
+        ( document.getElementById("char8") as HTMLInputElement).value,
+        ( document.getElementById("char9") as HTMLInputElement).value,
+ 
+           
+     ];
+  
+
+
+
+while(ThePartingWords.length > 0) {
+
+
+
+   const  SplitPerOne = ThePartingWords.shift();
+
+
+    const mappedValues = SplitPerOne.split("").map(char => CharMapping1[char]).filter(value => value !== undefined  ) ;
+
     
 
-console.log(getreplace(SplitPerOne))
+
+     const columnOne = [charValues[0], charValues[3], charValues[6]];
+     const columnTwo = [charValues[1], charValues[4], charValues[7]];
+     const columnThree = [charValues[2], charValues[5], charValues[8]];
+
+
+
+
+     const firstColumnDo = dotProduct(mappedValues , columnOne);
+     const secondColumnDo = dotProduct(mappedValues , columnTwo) ;
+     const thirdColumnDo = dotProduct(mappedValues , columnThree) ;
+
+
+
+     theresult.push([firstColumnDo, secondColumnDo, thirdColumnDo]);
 
   
 
-    const ThePartingExperi  = [15, 0, 24];
+
+    }
+
+
+
+return console.log(theresult)
+
+
+
+});
+
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
 
     
 
-    
-})
+ 
 
 
 
@@ -199,86 +361,39 @@ console.log(getreplace(SplitPerOne))
 
 
 
+const worder = ["cool",   "kind",   "best"]
 
-const CharMapping = {
+// console.log( worder.shift())
 
+while(worder.length > 0){
 
-  a:  "w" , b: "p" ,  c: "h" ,  d: "b" ,  e:"n"  ,  f: "c" ,  g: "a" ,  h: "x" ,  i: "t" ,  j:"l", 
-   k:"o",  l:"z" ,  m:"v" ,  n:"1" ,  o:"s" ,  p:"3" , 
-  
-  q:"m"  ,  r:"d" ,  s:"e" ,  t:"f" ,  u:"i" ,  v:"u" , w: "5" , x:"k" , y:"j" , z:"y" 
-     
-  
-  }
+  let shifter = worder.shift()
+
+  console.log( shifter)
 
 
 
-    
-
-
-function getcharmap ( char){
-
-
-  return char.replace(/[a-z]/gi, char => CharMapping[char] || char) 
-    
-    
 
 }
-
-
-
-console.log(getcharmap("I love to hack on cool stuff"))
-
-
-
-
-
-
-
-
-
-
-
-function dotProduct1(  arr1:number[], arr2 :number[]) {
-
-    return arr1.reduce((acc, val, index) => acc + val * arr2[index], 0);
-
-
-}
-
-
- console.log(dotProduct1 ( [1,2,3], [ 4,5,6]))
-
-
 
 
  
-function dotProduct2(  arr1:number[], arr2 :number[]) {
 
-    return arr1.reduce((acc, val, index) => acc + val * arr2[index], 0);
-
-
-}
-
-
- console.log(dotProduct2 ( [1,2,3], [ 4,5,6]))
+ 
 
 
 
 
 
 
- const see = "I love to hack on  and also build cool stuffs "
-
- function spillthis(thisspill){
 
 
 
-    console.log(thisspill)
- }
 
 
- spillthis(see)
+
+
+
 
 
 
