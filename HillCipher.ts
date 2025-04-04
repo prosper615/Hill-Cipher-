@@ -1,120 +1,8 @@
-
-
-
-
-
-
-
-const Typeshit : string = " I love to software engineering and hacking on cool stufs";
-
-
-console.log(Typeshit);
-
-
-
-
-    // const EnterTheMatrice = document.getElementById("EnterTheMatrice") as HTMLInputElement;
-
-
-    const MatriceInputs = document.getElementById("MatriceInputs") as HTMLElement;
-
-
-    MatriceInputs.style.display = 'hidden';
-
-
-
-/*
-    EnterTheMatrice.addEventListener('focus', () => {
-        
-        MatriceInputs.classList.remove('hidden');
-
-        document?.getElementById('char1') ?.focus();
-
-
-    });
-
-   
-
-
-    EnterTheMatrice.addEventListener('blur', () => {
-        // Optional: Hide the character inputs when the trigger input loses focus
-        // characterInputs.classList.add('hidden');
-    });
-
-     */
-
-
-
-    const Check : string = "Love blockchain engineering";
-
-    console.log(Check)
-
+ 
 
 
 
 const  Plaintext = document.getElementById("Plaintext") as HTMLInputElement;
-
-
-    const charInputs = document.querySelectorAll('.char-input') as NodeListOf<HTMLInputElement>;
-
-    charInputs.forEach((input, index) => {
-
-        input.addEventListener('input', (event) => {
-
-            const target =  event.target as HTMLInputElement
-
-            if (target.value.length === 1 && index < charInputs.length - 1) {
-
-                charInputs[index + 1].focus();
-
-            }
-        });
-
-
-
-        input.addEventListener('keydown', (event) => {
-
-
-            const keydowntarget = event.target as HTMLInputElement
-
-            const Keydownkey = event.key
-
-
-            // This is having some anamalous behaviour which i would come back to later
-
-            if (Keydownkey === 'Backspace' && index > 0 && !keydowntarget.value) {
-
-                charInputs[index - 1].focus();
-
-
-            }
-        });  
-    });
-
-
-
-
-    // Now it seems like am going to write  a function to carry out the task in my mind
-
-    // I would write a function that would take in the plaintext and the key and return the encrypted text
-
-    // The key would be a 3*3 matrix, which means the cipher text would be divided into 3 parts/words 
-    // before encryption
-
-    // If the plaintext is not a multiple of 3, then we would add some random characters to make it a multiple of 3
-
-
-
-
-
-
-    /* Now it's time to get the values of the matrix, which would be used for the multiplication of the plaintexts */
-
-
-
-
-
-
 
 
 const encryptionbutton = document.getElementById("encryptionbutton") as HTMLButtonElement;
@@ -122,263 +10,24 @@ const encryptionbutton = document.getElementById("encryptionbutton") as HTMLButt
 
 
 encryptionbutton.addEventListener("click", ()=>{
-
-
-
-
-
-    // TODO:  Need to rearrange, if i feel like later the way the HTML presents the input elements
-
-    /* From the way i arranged the assumed matrix input element
-
-input at position 1,4,7 forms the first row
-
-input at position 2,5,8  forms the second  row
-
-  input at position 3,6,9  forms the third   row
-
-
-    */
-
-
-  const char1 = document.getElementById( "char1")  as HTMLInputElement
-
-  const char2 = document.getElementById( "char2")  as HTMLInputElement
-
-  const char3 = document.getElementById( "char3")  as HTMLInputElement
-
-  const char4 = document.getElementById( "char4")  as HTMLInputElement
-
-  const char5 = document.getElementById( "char5")  as HTMLInputElement
-
-  const char6= document.getElementById( "char6")  as HTMLInputElement
-
-  const char7 = document.getElementById( "char7")  as HTMLInputElement
-
-  const char8 = document.getElementById( "char8")  as HTMLInputElement
-
-  const char9 = document.getElementById( "char9")  as HTMLInputElement
-
-
-  
-
-
-
-
-  console.log( char1.value)
-
-  console.log( char2.value)
-
-  console.log( char3.value)
-
-  console.log( char4.value)
-
-  console.log( char5.value)
-
-  console.log( char6.value)
-
-  console.log( char7.value)
-
-  console.log( char8.value)
-
-  console.log( char9.value)
-
-
+ 
 
     /* Now am going to assign  numerical value to the alphabets and then change the to it's
     corresponding numerical value, like A or a = 1, Bor b=2 and so forth
 
     */
+
+
     let  Plaintextvalue: string = Plaintext.value
 
-   const TheReplaced:  RegExp = new RegExp(/[a-z]/gi )
     
- let  ChangeToNomba = Plaintextvalue.replace(TheReplaced, (Nomba)=>{
-
-
-
-
-
-switch (Nomba) {
-
-    case "a": 
-    case "A":
-    return 0;
-
-
-    case "b": 
-    case "B":
-    return 1;
-
-
-
-    case "c": 
-    case "C":
-    return 2;
-
-
-
-    case "d": 
-    case "D":
-    return 3;
-
-
-    case "e": 
-    case "E":
-    return 4;
-
-
-    case "f": 
-    case "F":
-    return 5;
-
-    case "g": 
-    case "G":
-    return 6;
-
-
-    case "h": 
-    case "H":
-    return 7;
-
-
-
-    case "i": 
-    case "I":
-    return 8;
-
-
-    case "j": 
-    case "J":
-    return 9;
-
-
-
-    case "k": 
-    case "K":
-
-    return 10;
-
-
-
-    case "l": 
-    case "L":
-
-    return 11;
-
-
-
-    case "m": 
-    case "M":
-    return 12;
-
-
-    case "n": 
-    case "N":
-    return 13;
-
-
-    case "o": 
-    case "O":
-    return 14;
-
-
-
-    case "p": 
-    case "P":
-    return 15;
-
-
-
-    case "q": 
-    case "Q":
-    return 16;
-
-
-
-    case "r": 
-    case "R":
-
-    return 17;
-
-
-
-    case "s": 
-    case "S":
-    return 18;
-
-
-
-    case "t": 
-    case "T":
-    return 19;
-
-
-
-    case "u": 
-    case "U":
-    return 20;
-
-
-
-    case "v": 
-    case "V":
-    return 21;
-
-
-    case "w": 
-    case "W":
-    return 22;
-
-
-    case "x": 
-    case "X":
-    return 23;
-
-
-    case "y": 
-    case "Y":
-    return 24;
-
-
-    case "z": 
-    case "Z":
-    return 25;
-
-
-    
-    default:
-
-
-    return Nomba
-        
-}
-
-
-
-
-
-
-})
-
-
-
-const SeeChangeToNomba = ChangeToNomba
-
-
 /* Below here, i want to remove the whitespace so it would not be included when i count the length 
 of the "SeeChangeToNomba"
 
 */
 
 
-/* FixMe: lol i just wanted to use the "FixMe" statement, funny enough i just learnt it is a better way to
-tell your fellow dev u want to fix an issue. Read it on Airbnb Js guildliness. Never mind if i don't really
-follow the guildlines.  Soon I would adhere to the standards
-
-*/
-
-let  SeeChangeToNombaCount = SeeChangeToNomba.replace(/ /g, "");
+let  SeeChangeToNombaCount =  Plaintextvalue.replace(/ /g, "");
 
 
 let  SeeChangeToNombaCountLength =  SeeChangeToNombaCount.length;
@@ -387,7 +36,7 @@ let  SeeChangeToNombaCountLength =  SeeChangeToNombaCount.length;
 if(SeeChangeToNombaCountLength % 3 === 0 ){
 
 
-console.log("The plaintext is a multiple of 3");
+console.log("The plaintext is a multiple of 3") 
 
 
 
@@ -422,23 +71,9 @@ console.log(ArrayHold)
 
 
 
-console.log( "Am a blockchain wizard")
-
-
-    /* Same thing should just happen the difference is just that I
-    added the lettter x to pad the word to be a  multiple of 3, when it's not
-    
-    This is just a rule in Hill Cipher encryption.
-
-    So am gonna cocatenate with the x, so this means am gonna get the equivaalent of it in numbers
-
-
-    */
-
 
     let    AddToSeeChangeToNomba=  SeeChangeToNombaCount.concat("x")
-
-
+ 
     console.log(AddToSeeChangeToNomba)
 
 console.log("I need to concatenate something")
@@ -485,76 +120,316 @@ console.log( ArrayHold2)
 
 
 
-const Testing = document.getElementById("Testing") as HTMLButtonElement;
-
-
-Testing.addEventListener( "click" , ()=>{
-
-// TODO:  Need to rearrange, if i feel like later the way the HTML presents the input elements
-
-    /* From the way i arranged the assumed matrix input element
-
-input at position 1,4,7 forms the first row
-
-input at position 2,5,8  forms the second  row
-
-  input at position 3,6,9  forms the third   row
-
-
-    */
-
-
-    const char1 = document.getElementById( "char1")  as HTMLInputElement
-
-    const char2 = document.getElementById( "char2")  as HTMLInputElement
-
-    const char3 = document.getElementById( "char3")  as HTMLInputElement
-
-    const char4 = document.getElementById( "char4")  as HTMLInputElement
-
-    const char5 = document.getElementById( "char5")  as HTMLInputElement
-
-    const char6= document.getElementById( "char6")  as HTMLInputElement
-
-    const char7 = document.getElementById( "char7")  as HTMLInputElement
-
-    const char8 = document.getElementById( "char8")  as HTMLInputElement
-
-    const char9 = document.getElementById( "char9")  as HTMLInputElement
-
-
-    console.log( char1.value)
-
-    console.log( char2.value)
-
-    console.log( char3.value)
-
-    console.log( char4.value)
-
-    console.log( char5.value)
-
-    console.log( char6.value)
-
-    console.log( char7.value)
-
-    console.log( char8.value)
-
-    console.log( char9.value)
-
-
-    // Testing out somethin here again
-
-
-    let ArrayCarryNumber = [   "123", "246",  "369" ]
-
-
-     console.log(ArrayCarryNumber.join(,))
+const CharMapping1 = {
+    a: 0, A: 0,
+    b: 1, B: 1,
+    c: 2, C: 2,
+    d: 3, D: 3,
+    e: 4, E: 4,
+    f: 5, F: 5,
+    g: 6, G: 6,
+    h: 7, H: 7,
+    i: 8, I: 8,
+    j: 9, J: 9,
+    k: 10, K: 10,
+    l: 11, L: 11,
+    m: 12, M: 12,
+    n: 13, N: 13,
+    o: 14, O: 14,
+    p: 15, P: 15,
+    q: 16, Q: 16,
+    r: 17, R: 17,
+    s: 18, S: 18,
+    t: 19, T: 19,
+    u: 20, U: 20,
+    v: 21, V: 21,
+    w: 22, W: 22,
+    x: 23, X: 23,
+    y: 24, Y: 24,
+    z: 25, Z: 25
+};
 
 
 
 
+    function getreplace( replaced ){
 
+        return replaced.replace(/[a-z]/gi, replaced =>CharMapping1[replaced] ||  replaced )
+          
+          
+      
+      }
+
+
+const TestingArrayOp = document.getElementById("TestingArrayOp") as HTMLInputElement
+
+
+
+TestingArrayOp.addEventListener("click", () => {
+
+
+    const ThePartingWords = ["Ilo", "Pro", "Ret"];
+
+    // const SplitPerOne = ThePartingWords.shift().split("")
+
+    const SplitPerOne = ThePartingWords.shift()
+
+
+
+    console.log(SplitPerOne)
+    
+
+console.log(getreplace(SplitPerOne))
+
+  
+
+    const ThePartingExperi  = [15, 0, 24];
+
+
+
+
+    
+
+    
 })
+
+
+
+
+
+
+
+
+const CharMapping = {
+
+
+  a:  "w" , b: "p" ,  c: "h" ,  d: "b" ,  e:"n"  ,  f: "c" ,  g: "a" ,  h: "x" ,  i: "t" ,  j:"l", 
+   k:"o",  l:"z" ,  m:"v" ,  n:"1" ,  o:"s" ,  p:"3" , 
+  
+  q:"m"  ,  r:"d" ,  s:"e" ,  t:"f" ,  u:"i" ,  v:"u" , w: "5" , x:"k" , y:"j" , z:"y" 
+     
+  
+  }
+
+
+
+    
+
+
+function getcharmap ( char){
+
+
+  return char.replace(/[a-z]/gi, char => CharMapping[char] || char) 
+    
+    
+
+}
+
+
+
+console.log(getcharmap("I love to hack on cool stuff"))
+
+
+
+
+
+
+
+
+
+
+
+function dotProduct1(  arr1:number[], arr2 :number[]) {
+
+    return arr1.reduce((acc, val, index) => acc + val * arr2[index], 0);
+
+
+}
+
+
+ console.log(dotProduct1 ( [1,2,3], [ 4,5,6]))
+
+
+
+
+ 
+function dotProduct2(  arr1:number[], arr2 :number[]) {
+
+    return arr1.reduce((acc, val, index) => acc + val * arr2[index], 0);
+
+
+}
+
+
+ console.log(dotProduct2 ( [1,2,3], [ 4,5,6]))
+
+
+
+
+
+
+ const see = "I love to hack on  and also build cool stuffs "
+
+ function spillthis(thisspill){
+
+
+
+    console.log(thisspill)
+ }
+
+
+ spillthis(see)
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+ 
+
+  
+
+
+  /*
+
+
+  const TestingArrayOp = document.getElementById("TestingArrayOp") as HTMLInputElement
+
+
+TestingArrayOp.addEventListener("click", () => {
+
+    
+
+    // input at position 1,4,7 forms the first row
+
+    // input at position 2,5,8  forms the second  row
+    
+    // input at position 3,6,9  forms the third   row
+ 
+      
+
+    // TODO:  Need to rearrange the way the HTML presents the input element
+
+    const charValues = [
+       ( document.getElementById("char1") as HTMLInputElement).value,
+       ( document.getElementById("char2") as HTMLInputElement).value, 
+       ( document.getElementById("char3") as HTMLInputElement).value,
+       ( document.getElementById("char4") as HTMLInputElement).value,
+       ( document.getElementById("char5") as HTMLInputElement).value,
+       ( document.getElementById("char6") as HTMLInputElement).value,
+       ( document.getElementById("char7") as HTMLInputElement).value, 
+       ( document.getElementById("char8") as HTMLInputElement).value,
+       ( document.getElementById("char9") as HTMLInputElement).value,
+
+          
+    ];
+
+
+
+
+
+    
+});
+
+
+const arrayCarryNumber = ["15", "0", "24"];
+
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+/*
+
+// Function to calculate the dot product of two arrays
+function dotProduct(arr1, arr2) {
+    return arr1.reduce((acc, val, index) => acc + val * arr2[index], 0);
+}
+
+// Function to perform the Hill cipher calculation
+function hillCipher(charValues, arrayCarryNumber) {
+    const result = [];
+
+    arrayCarryNumber.forEach((numStr) => {
+        const cutFromArray = numStr.split("");
+
+        const columnOne = [charValues[0], charValues[3], charValues[6]];
+        const columnTwo = [charValues[1], charValues[4], charValues[7]];
+        const columnThree = [charValues[2], charValues[5], charValues[8]];
+
+        const firstColumnDo = dotProduct(cutFromArray, columnOne) % 26;
+        const secondColumnDo = dotProduct(cutFromArray, columnTwo) % 26;
+        const thirdColumnDo = dotProduct(cutFromArray, columnThree) % 26;
+
+        result.push([firstColumnDo, secondColumnDo, thirdColumnDo]);
+    });
+
+    return result;
+}
+
+// Event listener for the button click
+document.getElementById("TestingArrayOp").addEventListener("click", () => {
+    const charValues = [
+        document.getElementById("char1").value,
+        document.getElementById("char2").value,
+        document.getElementById("char3").value,
+        document.getElementById("char4").value,
+        document.getElementById("char5").value,
+        document.getElementById("char6").value,
+        document.getElementById("char7").value,
+        document.getElementById("char8").value,
+        document.getElementById("char9").value,
+    ];
+
+    const arrayCarryNumber = ["123", "523", "892", "246"];
+
+    const result = hillCipher(charValues, arrayCarryNumber);
+
+    console.log(result);
+});
+
+
+*/
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
 
 
 
