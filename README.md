@@ -12,7 +12,7 @@ Text Input: Enter a message (plaintext) for encryption.
 
 + Automatic Padding: If the plaintext length is not a multiple of 3, it is padded with 'x' to make it divisible by 3 for Hill Cipher encryption.
 
- ** Setup **
+ # Setup 
 To use this implementation:
 
  + Clone this repository to your local machine.
@@ -27,7 +27,8 @@ cd <repo_folder>
 
 open index.html
 
-** How It Works **
+# How It Works 
+
  + Input Handling: The user inputs plaintext (a message). When the message is typed, the "Encrypt" button is automatically enabled or disabled based on whether the input is empty.
 
 + Button Click Event: When the "Encrypt" button is clicked, the message is processed and encrypted using the Hill cipher.
@@ -39,7 +40,8 @@ open index.html
 Cipher Output: After encryption, the resulting ciphertext is displayed.
   
 
-  ** Example Usage **
+  # Example Usage
+  
  + Enter a message in the input field (e.g., hello).
 
  + Press the "Encrypt" button to get the encrypted result.
@@ -47,23 +49,21 @@ Cipher Output: After encryption, the resulting ciphertext is displayed.
 + If the length of the input is not divisible by 3, the algorithm will add padding characters ('x') to make it a multiple of 3.
 
     
-** There are some potential improvements and fixes to consider: **
+__ There are some potential improvements and fixes to consider: __
 
  + Review how padding is handled for input lengths that aren't a multiple of 3 (currently, padding with 'x' could cause unintended behavior if the result isn't properly divisible by 3).
 
  + Improve the UI to provide feedback on errors or invalid inputs.
 
-** Bugs ** 
+# Bugs 
 The padding mechanism (x) could introduce problems for inputs that aren’t multiples of 3, such as when adding x creates an input that's still not a multiple of 3. For example, adding an 'x' to an input of length 13 would give 14, which still isn't divisible by 3.
 
-License
-This project is open-source. Feel free to modify and improve upon it.
 
- ** Technology Used **
-HTML: To structure the input forms and display the results.
+ # Technology Used
+ + HTML: To structure the input forms and display the results.
 
-JavaScript/TypeScript: For implementing the Hill Cipher algorithm and handling user interactions.
+ + JavaScript/TypeScript: For implementing the Hill Cipher algorithm and handling user interactions.
 
-CSS: Styling for the interactive elements and layout.
++  CSS: Styling for the interactive elements and layout.
   
-Any suggestions or improvements ?
+ * Any suggestions or improvements ? *
