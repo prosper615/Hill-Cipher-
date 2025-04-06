@@ -20,10 +20,11 @@ To use this implementation:
  + Open the HTML file in a browser to see the interactive encryption tool.
 
 bash
+
 Copy
-git clone <repo_url>
+git clone [https://github.com/prosper615/Hill-Cipher-/tree/master]
  
-cd <repo_folder>
+cd Hill-Cipher-
 
 open index.html
 
