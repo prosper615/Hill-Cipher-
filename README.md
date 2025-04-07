@@ -1,16 +1,16 @@
 
 
-** Hill Cipher Encryption **
+# Hill Cipher Encryption 
 This project implements the Hill Cipher, an early cipher technique based on matrix multiplication. It was invented by Lester S. Hill in 1929. This implementation provides an interactive way to input a plaintext message, encrypt it using the Hill Cipher algorithm, and display the encrypted ciphertext.
 
- ** Features **
+ # Features 
 Text Input: Enter a message (plaintext) for encryption.
 
  + Matrix-Based Encryption: Encrypt the message using matrix multiplication based on the Hill cipher algorithm.
 
  + Handling Empty Input: The "Encrypt" button is disabled if the input is empty.
 
-+ Automatic Padding: If the plaintext length is not a multiple of 3, it is padded with 'x' to make it divisible by 3 for Hill Cipher encryption.
++  Padding: If the plaintext length is not a multiple of 3, it is padded with 'x' to make it divisible by 3 for Hill Cipher encryption.
 
  # Setup 
 To use this implementation:
@@ -19,14 +19,6 @@ To use this implementation:
 
  + Open the HTML file in a browser to see the interactive encryption tool.
 
-bash
-
-Copy
-git clone [https://github.com/prosper615/Hill-Cipher-/tree/master]
- 
-cd Hill-Cipher-
-
-open index.html
 
 # How It Works 
 
@@ -38,7 +30,7 @@ open index.html
 
  + Encryption: The Hill Cipher encrypts the message by performing matrix multiplication on the message's characters, which are mapped to numeric values based on the alphabet (a=0, b=1, ..., z=25). The matrix operations are performed on 3x3 blocks of characters, and the result is transformed back into ciphertext.
 
-Cipher Output: After encryption, the resulting ciphertext is displayed.
++ Cipher Output: After encryption, the resulting ciphertext is displayed.
   
 
   # Example Usage
@@ -50,14 +42,14 @@ Cipher Output: After encryption, the resulting ciphertext is displayed.
 + If the length of the input is not divisible by 3, the algorithm will add padding characters ('x') to make it a multiple of 3.
 
     
-__ There are some potential improvements and fixes to consider: __
+ There are some potential improvements and fixes to consider: 
 
  + Review how padding is handled for input lengths that aren't a multiple of 3 (currently, padding with 'x' could cause unintended behavior if the result isn't properly divisible by 3).
 
  + Improve the UI to provide feedback on errors or invalid inputs.
 
 # Bugs 
-The padding mechanism (x) could introduce problems for inputs that aren’t multiples of 3, such as when adding x creates an input that's still not a multiple of 3. For example, adding an 'x' to an input of length 13 would give 14, which still isn't divisible by 3.
+ I intentionally left it as this is just for programming sake, that's why i thought there is no need to mitigate XXS attacks. I could have used DOMPurify libary if i cared to do so .The padding mechanism (x) could introduce problems for inputs that aren’t multiples of 3, such as when adding x creates an input that's still not a multiple of 3. For example, adding an 'x' to an input of length 13 would give 14, which still isn't divisible by 3.
 
 
  # Technology Used
@@ -67,4 +59,4 @@ The padding mechanism (x) could introduce problems for inputs that aren’t mult
 
 +  CSS: Styling for the interactive elements and layout.
   
- * Any suggestions or improvements ? *
+ * Any suggestions or improvements ? Please roast me.
