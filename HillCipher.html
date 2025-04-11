@@ -5,9 +5,77 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title> Hill Cipher in ts</title>
+    <title> Hill Ciphering </title>
+    <link rel="stylesheet" href="HillCipher.css">
 </head>
 <body>
+
+
+
+<div class="TheContainer">
+
+    <p> Hill Cipher encryption   &#128578; </p>
+
+
+    <input type="text" id="Plaintext" placeholder="Enter the plaintext">
+
     
+
+
+     <p> Enter a 3*3 matrix which is your key for encryption</p>
+
+    <div id="MatriceInputs" >
+ 
+<div>
+        
+        <input type="text" class="char-input" id="char1">
+        <input type="text"  class="char-input" id="char2">
+        <input type="text"  class="char-input" id="char3">
+
+
+    </div>
+    
+
+        <br>
+
+        
+<div>
+        <input type="text"  class="char-input" id="char4">
+        <input type="text"  class="char-input" id="char5">
+        <input type="text"  class="char-input" id="char6">
+
+    </div>
+
+    
+
+        <br>
+
+
+        <div>
+
+        <input type="text"  class="char-input" id="char7">
+        <input type="text"  class="char-input" id="char8">
+        <input type="text"  class="char-input" id="char9">
+
+    </div>
+
+ 
+    </div>
+
+
+    HillCipher text : 
+    <p id="ciphercontent"> </p>
+
+<button  id="encryptionbutton"> Encrypt </button>
+
+
+</div>
+
+
+
+   <script  type="module" src="HillCipher.js" ></script>
+
+
+
 </body>
 </html>

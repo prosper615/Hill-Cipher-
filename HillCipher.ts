@@ -1,201 +1,55 @@
  
+// The Hill cipher is one of the earliest cipher based on matrices
+
+// It was invented by Lester S. Hill
+
+// Hv forgotten the book i read it from but likely the one by Frank Rubin
+
+// Implementing from my st*pid jotter
 
 
 
-const  Plaintext = document.getElementById("Plaintext") as HTMLInputElement;
+
+ const Plaintext = document.getElementById("Plaintext") as HTMLInputElement ;
 
 
-const encryptionbutton = document.getElementById("encryptionbutton") as HTMLButtonElement;
+const ciphercontent = document.getElementById("ciphercontent") as HTMLDivElement ;  
 
+
+  const encryptionbutton = document.getElementById("encryptionbutton") as HTMLButtonElement;
+
+
+
+
+// I think there is no need to mitigate XXS attacks  because code is just for programming sake
+
+//TODO: Might use DOMPurify js libary for the above if i care to do so
+
+
+// I want to disable button if the input fields are empty
+
+
+Plaintext.addEventListener("input", () => {
+  encryptionbutton.disabled = Plaintext.value.trim() === "";
+});
+
+
+
+  
 
 
 encryptionbutton.addEventListener("click", ()=>{
  
-
-    /* Now am going to assign  numerical value to the alphabets and then change the to it's
-    corresponding numerical value, like A or a = 1, Bor b=2 and so forth
-
-    */
-
-
-    let  Plaintextvalue: string = Plaintext.value
-
-    
-/* Below here, i want to remove the whitespace so it would not be included when i count the length 
-of the "SeeChangeToNomba"
-
-*/
-
-
-let  SeeChangeToNombaCount =  Plaintextvalue.replace(/ /g, "");
-
-
-let  SeeChangeToNombaCountLength =  SeeChangeToNombaCount.length;
-
-
-if(SeeChangeToNombaCountLength % 3 === 0 ){
-
-
-console.log("The plaintext is a multiple of 3") 
-
-
-
-let ArrayHold:string[] =  []
-
- let InitialSlice = 0
-
-
-while (SeeChangeToNombaCount.length > 0) {
-
-
-let DivideInThree  = SeeChangeToNombaCount.slice(InitialSlice,3)
-
-
-ArrayHold.push(DivideInThree)
-
-
-SeeChangeToNombaCount = SeeChangeToNombaCount.slice(3)
-
-
-    
-}
-
-
-
-console.log(ArrayHold)
-
-
-
-// let ThePartingWords = ["pay", "Pro", "Ret"];
-
-let ThePartingWords = ArrayHold;
-
-
-
-const theresult = []
-
-
-    // Now getting the values of the matrix
-    
-    // input at position 1,4,7 forms the first row
-
-    // input at position 2,5,8  forms the second  row
-    
-    // input at position 3,6,9  forms the third   row
- 
-      
-
-    // TODO:  Need to rearrange the way the HTML presents the input element
-
-    const charValues = [
-        ( document.getElementById("char1") as HTMLInputElement).value,
-        ( document.getElementById("char2") as HTMLInputElement).value, 
-        ( document.getElementById("char3") as HTMLInputElement).value,
-        ( document.getElementById("char4") as HTMLInputElement).value,
-        ( document.getElementById("char5") as HTMLInputElement).value,
-        ( document.getElementById("char6") as HTMLInputElement).value,
-        ( document.getElementById("char7") as HTMLInputElement).value, 
-        ( document.getElementById("char8") as HTMLInputElement).value,
-        ( document.getElementById("char9") as HTMLInputElement).value,
- 
-           
-     ];
-  
-
-
-
-while(ThePartingWords.length > 0) {
-
-
-
-   const  SplitPerOne = ThePartingWords.shift();
-
-
-    const mappedValues = SplitPerOne.split("").map(char => CharMapping1[char]).filter(value => value !== undefined  ) ;
-
-    
-
-
-     const columnOne = [charValues[0], charValues[3], charValues[6]];
-     const columnTwo = [charValues[1], charValues[4], charValues[7]];
-     const columnThree = [charValues[2], charValues[5], charValues[8]];
-
-
-
-
-     const firstColumnDo = dotProduct(mappedValues , columnOne);
-     const secondColumnDo = dotProduct(mappedValues , columnTwo) ;
-     const thirdColumnDo = dotProduct(mappedValues , columnThree) ;
-
-
-
-     theresult.push([firstColumnDo, secondColumnDo, thirdColumnDo]);
-
-  
-
-
-    }
-
-
-
-return console.log(theresult)
-
-
-
-
-
-
-
-
-} else{
-
-
-
-
-    let    AddToSeeChangeToNomba=  SeeChangeToNombaCount.concat("x")
- 
-    console.log(AddToSeeChangeToNomba)
-
-console.log("I need to concatenate something")
-
-let ArrayHold2: string[] = []
-
-let InitialSlice2 = 0;
-
-while ( AddToSeeChangeToNomba.length > 0) {
-
-
-let DivideInThree2 = AddToSeeChangeToNomba.slice(InitialSlice2, 3)
-
-ArrayHold2.push( DivideInThree2);
-
-
-AddToSeeChangeToNomba = AddToSeeChangeToNomba.slice(3)
-
-    
-}
-
-
-
-
-console.log( ArrayHold2)
-
-
-
+    DivideandConcate ()
 
 }
-
-
-}
-
-
 
 )
 
 
 
-
-const CharMapping1 = {
+  
+const CharMapping1: {[key:string]: number} = {
     a: 0, A: 0,
     b: 1, B: 1,
     c: 2, C: 2,
@@ -230,30 +84,45 @@ const CharMapping1 = {
 
 
 
-function dotProduct (arr1, arr2) {
+ function dotProduct (arr1:number[], arr2:string[]) {
 
-    return arr1.reduce((acc :number, val:number, index: number) => acc + val * arr2[index], 0) % 26;
+     
+    
+    let DotedProduct = arr1.reduce((acc :number, val:number, index: number) => acc + val * parseInt(arr2[index], 10) ,0)% 26;
 
+    // This is because js % return negative value if dividend is negative 
+
+    if(DotedProduct < 0){
+
+       DotedProduct += 26 
+
+
+    }
+
+    return DotedProduct
 
 }
 
 
-console.log( dotProduct([15, 0, 24], [17, 21, 2]))
 
 
 
 
 
-/*
-
-const TestingArrayOp = document.getElementById("TestingArrayOp")   as HTMLButtonElement
-
-TestingArrayOp.addEventListener("click", () => {
-
-    let ThePartingWords = ["pay", "Pro", "Ret"];
 
 
-const theresult = []
+
+// This is the function I used to perform the Hillcipher logic
+
+
+ 
+ function TheCipherOperation ( thepartedwords: string[]){
+
+let ThePartingWords = thepartedwords
+
+let theresult : number[][]=  []
+
+
 
 
     // Now getting the values of the matrix
@@ -266,7 +135,7 @@ const theresult = []
  
       
 
-    // TODO:  Need to rearrange the way the HTML presents the input element
+    // TODO:  Maybe rearrange the way the HTML presents the input element
 
     const charValues = [
         ( document.getElementById("char1") as HTMLInputElement).value,
@@ -281,15 +150,18 @@ const theresult = []
  
            
      ];
-  
 
+
+     
 
 
 while(ThePartingWords.length > 0) {
+    
 
 
+   const  SplitPerOne : string= ThePartingWords.shift() as string;
 
-   const  SplitPerOne = ThePartingWords.shift();
+
 
 
     const mappedValues = SplitPerOne.split("").map(char => CharMapping1[char]).filter(value => value !== undefined  ) ;
@@ -298,7 +170,7 @@ while(ThePartingWords.length > 0) {
 
 
      const columnOne = [charValues[0], charValues[3], charValues[6]];
-     const columnTwo = [charValues[1], charValues[4], charValues[7]];
+     const columnTwo = [charValues[1], charValues[4], charValues[7]];                         
      const columnThree = [charValues[2], charValues[5], charValues[8]];
 
 
@@ -310,217 +182,192 @@ while(ThePartingWords.length > 0) {
 
 
 
-     theresult.push([firstColumnDo, secondColumnDo, thirdColumnDo]);
+     theresult.push([firstColumnDo, secondColumnDo, thirdColumnDo].concat());
 
   
-
+   
 
     }
 
 
+const Joiner = theresult.flat()
 
-return console.log(theresult)
 
-
-
-});
-
-
-
-*/
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
-
- 
-
-
-
-
-
-
-
-const worder = ["cool",   "kind",   "best"]
-
-// console.log( worder.shift())
-
-while(worder.length > 0){
-
-  let shifter = worder.shift()
-
-  console.log( shifter)
-
-
-
-
-}
-
-
- 
-
- 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
- 
-
-
-
-
-
-
- 
+return ciphercontent.textContent = ToCiphertext(Joiner).join("") ;
 
   
 
-
-  /*
-
-
-  const TestingArrayOp = document.getElementById("TestingArrayOp") as HTMLInputElement
+} 
 
 
-TestingArrayOp.addEventListener("click", () => {
 
-    
 
-    // input at position 1,4,7 forms the first row
 
-    // input at position 2,5,8  forms the second  row
-    
-    // input at position 3,6,9  forms the third   row
+
+
+
+
+// This function divides the words into three parts and concates 'x'  when the word is not a multiple of 3
+
+// Thats how the 3*3 HillCipher is implemented
+
  
-      
-
-    // TODO:  Need to rearrange the way the HTML presents the input element
-
-    const charValues = [
-       ( document.getElementById("char1") as HTMLInputElement).value,
-       ( document.getElementById("char2") as HTMLInputElement).value, 
-       ( document.getElementById("char3") as HTMLInputElement).value,
-       ( document.getElementById("char4") as HTMLInputElement).value,
-       ( document.getElementById("char5") as HTMLInputElement).value,
-       ( document.getElementById("char6") as HTMLInputElement).value,
-       ( document.getElementById("char7") as HTMLInputElement).value, 
-       ( document.getElementById("char8") as HTMLInputElement).value,
-       ( document.getElementById("char9") as HTMLInputElement).value,
-
-          
-    ];
+function DivideandConcate () {
 
 
+    let  Plaintextvalue: string = Plaintext.value
+    
 
+    
+/* Below here, i want to remove the whitespace so it would not be included when i count the length 
+of the "SeeChangeToNomba"
+
+*/
+
+ 
+let  SeeChangeToNombaCount =  Plaintextvalue.replace(/ /g, "");
+
+
+let  SeeChangeToNombaCountLength =  SeeChangeToNombaCount.length;
+
+
+if(SeeChangeToNombaCountLength % 3 === 0 ){
+
+let ArrayHold:string[] =  []
+
+ let InitialSlice = 0
+
+while (SeeChangeToNombaCount.length > 0) {
+
+
+let DivideInThree  = SeeChangeToNombaCount.slice(InitialSlice,3)
+
+
+ArrayHold.push(DivideInThree)
+
+
+SeeChangeToNombaCount = SeeChangeToNombaCount.slice(3)
 
 
     
-});
+}
 
 
-const arrayCarryNumber = ["15", "0", "24"];
+TheCipherOperation(ArrayHold)
 
 
+} else{
+
+
+
+    let    AddToSeeChangeToNomba=  SeeChangeToNombaCount.concat("x")
+
+let ArrayHold2: string[] = []
+
+let InitialSlice2 = 0;
+
+while ( AddToSeeChangeToNomba.length > 0) {
+
+
+let DivideInThree2 = AddToSeeChangeToNomba.slice(InitialSlice2, 3)
+
+ArrayHold2.push( DivideInThree2);
+
+
+AddToSeeChangeToNomba = AddToSeeChangeToNomba.slice(3)
+
+    
+}
+
+
+TheCipherOperation(ArrayHold2)
+
+
+}
+
+
+ }
+
+
+
+
+   function ToCiphertext (  changetocipher :number[]) {
+    
+  const CipherMapping: { [key: number]: string } = {
+    0: 'a', 1: 'b', 2: 'c', 3: 'd', 4: 'e', 5: 'f', 6: 'g', 7: 'h', 8: 'i', 9: 'j',
+    10: 'k', 11: 'l', 12: 'm', 13: 'n', 14: 'o', 15: 'p', 16: 'q', 17: 'r', 18: 's', 19: 't',
+    20: 'u', 21: 'v', 22: 'w', 23: 'x', 24: 'y', 25:'z',
+  };
+
+
+  const TobeReplaced = changetocipher ; 
+
+  const Ciphering = TobeReplaced.map((num) => CipherMapping[num] || num); 
+
+  return Ciphering;
+
+
+
+}
+
+
+ 
+
+
+
+
+
+
+
+/* I noticed and intentionally ignored a bug. The HillCipher concates 'x' if the word is not a
+
+ a multiple of 3. what if the word is something like 13 (not a multiple of 3 ) ,
+ 
+ concates 'x'  and gives 14 ( still not a multiple of 3).
+
+ Try it with this word: wise man is a boy (13 words) + 'x'   = 14 words
+
+ 
 */
 
 
 
-
-
-
-
-
-
-
-
+// Fix to the bug 
 
 /*
-
-// Function to calculate the dot product of two arrays
-function dotProduct(arr1, arr2) {
-    return arr1.reduce((acc, val, index) => acc + val * arr2[index], 0);
-}
-
-// Function to perform the Hill cipher calculation
-function hillCipher(charValues, arrayCarryNumber) {
-    const result = [];
-
-    arrayCarryNumber.forEach((numStr) => {
-        const cutFromArray = numStr.split("");
-
-        const columnOne = [charValues[0], charValues[3], charValues[6]];
-        const columnTwo = [charValues[1], charValues[4], charValues[7]];
-        const columnThree = [charValues[2], charValues[5], charValues[8]];
-
-        const firstColumnDo = dotProduct(cutFromArray, columnOne) % 26;
-        const secondColumnDo = dotProduct(cutFromArray, columnTwo) % 26;
-        const thirdColumnDo = dotProduct(cutFromArray, columnThree) % 26;
-
-        result.push([firstColumnDo, secondColumnDo, thirdColumnDo]);
-    });
-
-    return result;
-}
-
-// Event listener for the button click
-document.getElementById("TestingArrayOp").addEventListener("click", () => {
-    const charValues = [
-        document.getElementById("char1").value,
-        document.getElementById("char2").value,
-        document.getElementById("char3").value,
-        document.getElementById("char4").value,
-        document.getElementById("char5").value,
-        document.getElementById("char6").value,
-        document.getElementById("char7").value,
-        document.getElementById("char8").value,
-        document.getElementById("char9").value,
-    ];
-
-    const arrayCarryNumber = ["123", "523", "892", "246"];
-
-    const result = hillCipher(charValues, arrayCarryNumber);
-
-    console.log(result);
-});
+    while (SeeChangeToNombaCountLength % 3 !== 0) {
+    SeeChangeToNombaCount += 'x';
+    SeeChangeToNombaCountLength++;
+  } */
 
 
-*/
+ 
+
+
+   
+    
+
+ 
+
+ 
+
+
+
+
+
+
+
+
+ 
+
+// export{
+
+// dotProduct, ToCiphertext
+
+
+// }
+
+  
 
  
 

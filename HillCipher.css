@@ -1,0 +1,85 @@
+ 
+
+
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    
+}
+
+.TheContainer {
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+
+}
+
+
+ 
+.TheContainer p {
+    font-size: 1.2em;
+ 
+}
+
+
+#Plaintext {
+    width: 100%;
+    margin: 10px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: border-color 0.3s ease, box-shadow 0.3s ease;
+}
+
+#Plaintext::placeholder {
+    color: #aaa;
+}
+
+
+
+ 
+.char-input {
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    text-align: center;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin: 5px;
+    margin-bottom: 20px;
+
+}
+
+
+
+
+#encryptionbutton {
+    
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    font-size: 1em;
+    cursor: pointer;
+    margin-top: 20px;
+    
+}
+
+
+ 
+#ciphercontent {
+    margin-top: 20px;
+    font-size: 1.2em;
+    
+}
+
+
+
+  
